@@ -146,14 +146,14 @@ if(isset($_POST['removewish'])){
   
    
    
-// if(isset($_POST['remove'])){
-//     foreach($_SESSION['cart'] as $key => $val){
-//                if($val['id'] == $_POST['remove']){
-//                    array_splice($_SESSION['cart'] , $key ,1);
+ if(isset($_POST['remove'])){
+     foreach($_SESSION['cart'] as $key => $val){
+                if($val['id'] == $_POST['remove']){
+                    array_splice($_SESSION['cart'] , $key ,1);
                      
-// }
-//     }
-// }
+ }
+     }
+ }
 
 
 
