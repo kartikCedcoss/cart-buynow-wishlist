@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("config.php"); 
- //header("location:products.php");
+header("location:products.php");
 
 
 if(!isset($_SESSION['cart'])){
@@ -17,12 +17,11 @@ if (!isset($_SESSION['wishlist']))
     {
         $_SESSION['wishlist'] =array();
     }
-$_SESSION['bcheck'] = $_POST['buyNow'];
-$_SESSION['wishcheck'] = $_POST['wishlist'];
+
 
 
   $action="";
-  //print_r($_POST);
+  
 
 foreach ($_POST as $k => $v)
 {
@@ -80,11 +79,7 @@ function addToCart()
    }
    
 function wishlist(){
-    // if (!isset($_SESSION['wishlist']))
-    // {
-    //     $_SESSION['wishlist'] =array();
-    // }
-    
+   
     
     foreach($_SESSION['product'] as $key=> $value)
     {
@@ -113,7 +108,7 @@ function wishlist(){
         }
        
     }
-    //unset($_SESSION['wishlist']);
+    
 
 }
 if(isset($_POST['removewish'])){
@@ -196,7 +191,7 @@ if(isset($_POST['addTocart'])){
             }
         }        
     }
-    foreach ($_SESSION['buynow'] as $value){ 
+    foreach ($_SESSION['buynow'] as $key => $value){ 
         if ($value['id'] == $_POST['addTocart'])
         {
             $id = $value['id'];
@@ -214,7 +209,7 @@ if(isset($_POST['addTocart'])){
 
 
 if(isset($_POST['bbuyNow'])){
-    foreach ($_SESSION['cart'] as $vll){ 
+    foreach ($_SESSION['cart'] as $key => $vll){ 
         if ($vll['id'] == $_POST['bbuyNow'])
         {
              $aid = $vll['id'];
@@ -242,8 +237,8 @@ if(isset($_POST['addtobuy'])){
             $baquantity =$ve['quantity'];
             $badata = array("id" => $baid ,"name"=> $baname , "image"=> $baimage ,"price" => $baprice, "quantity" => $baquantity);
             array_push($_SESSION['buynow'], $badata);
-            unset($_SESSION['cart']);
-            //array_splice($_SESSION['cart'],$key,1);
+          
+            array_splice($_SESSION['cart'],$key,1);
     }
 }
 
@@ -261,7 +256,7 @@ if(isset($_POST['clearwish'])){
 }
 
 if(isset($_POST['carttowish'])){
-    foreach ($_SESSION['cart'] as $vll){ 
+    foreach ($_SESSION['cart'] as $key=> $vll){ 
         if ($vll['id'] == $_POST['carttowish'])
         {
              $aid = $vll['id'];
@@ -271,7 +266,7 @@ if(isset($_POST['carttowish'])){
             $aquantity =$vll['quantity'];
              $adata = array("id" => $aid ,"name"=> $aname , "image"=> $aimage ,"price" => $aprice, "quantity" => $aquantity);
             array_push($_SESSION['wishlist'], $adata);
-            //array_splice($_SESSION['cart'],$key,1);
+            array_splice($_SESSION['cart'],$key,1);
         }
     }
 }
@@ -282,7 +277,7 @@ if(isset($_POST['carttowish'])){
 if(isset($_POST['wishtocart'])){
    
 
-    foreach ($_SESSION['wishlist'] as $vll){ 
+    foreach ($_SESSION['wishlist'] as $key=> $vll){ 
        
         if ($vll['id'] == $_POST['wishtocart'])
         {
@@ -294,7 +289,7 @@ if(isset($_POST['wishtocart'])){
             $aquantity =$vll['quantity'];
              $adata = array("id" => $aid ,"name"=> $aname , "image"=> $aimage ,"price" => $aprice, "quantity" => $aquantity);
             array_push($_SESSION['cart'], $adata);
-            //array_splice($_SESSION['cart'],$key,1);
+            array_splice($_SESSION['cart'],$key,1);
         }
     }
 }
@@ -323,7 +318,7 @@ if(isset($_POST['wishtobuy'])){
 if(isset($_POST['buytowish'])){
    
     echo $_POST['buytowish'];
-    foreach ($_SESSION['buynow'] as  $vll){ 
+    foreach ($_SESSION['buynow'] as $key=>  $vll){ 
        
         if ($vll['id'] == $_POST['buytowish']+1)
         {
@@ -336,7 +331,7 @@ if(isset($_POST['buytowish'])){
             $aquantity =$vll['quantity'];
              $adata = array("id" => $aid ,"name"=> $aname , "image"=> $aimage ,"price" => $aprice, "quantity" => $aquantity);
             array_push($_SESSION['wishlist'], $adata);
-            array_splice($_SESSION['cart'],1);
+            array_splice($_SESSION['cart'],$key,1);
         }
     }
 }

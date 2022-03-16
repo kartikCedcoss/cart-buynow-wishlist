@@ -118,7 +118,7 @@ include("config.php");
 		foreach($_SESSION['wishlist'] as $key => $value) {
 
          
-	          $_SESSION['wishlist'][$key]['id'] ==  $_SESSION['wishcheck'] ;
+	         
 	         
          
 
